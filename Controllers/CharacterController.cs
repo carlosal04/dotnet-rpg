@@ -19,11 +19,9 @@ namespace DOTNET_RPG.Controllers
             
         }
 
-        [AllowAnonymous]
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
-            int id = int.Parse(User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value);
             return Ok(await _characterService.GetAllCharacters());
         }
 
