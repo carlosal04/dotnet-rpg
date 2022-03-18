@@ -4,6 +4,7 @@ using DOTNET_RPG.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DOTNET_RPG.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220314203214_Skill")]
+    partial class Skill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +50,7 @@ namespace DOTNET_RPG.Migrations
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
-                    b.Property<int>("Defeats")
-                        .HasColumnType("int");
-
                     b.Property<int>("Defense")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
@@ -71,9 +67,6 @@ namespace DOTNET_RPG.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Victories")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -101,26 +94,6 @@ namespace DOTNET_RPG.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 30,
-                            Name = "FireBall"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 20,
-                            Name = "Frenzy"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 50,
-                            Name = "Blizzard"
-                        });
                 });
 
             modelBuilder.Entity("DOTNET_RPG.Models.User", b =>
@@ -138,12 +111,6 @@ namespace DOTNET_RPG.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("Player");
 
                     b.Property<string>("UserName")
                         .IsRequired()

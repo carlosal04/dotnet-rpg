@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DOTNET_RPG.Models
 {
     public class User
@@ -7,5 +9,7 @@ namespace DOTNET_RPG.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public List<Character> Characters { get; set; }
+        [Required]
+        public string Role { get; set; }
     }
 }

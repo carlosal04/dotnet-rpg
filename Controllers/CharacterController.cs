@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace DOTNET_RPG.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Player")]
     [ApiController]
     [Route("[controller]")]
     public class CharacterController : ControllerBase
@@ -53,6 +53,12 @@ namespace DOTNET_RPG.Controllers
             if (response.Data == null)
                 return NotFound(response);
             return Ok(response);
+        }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> AddCharacterSkill(AddCharacterSkillDto newCharacterSkill)
+        {
+            return Ok(await _characterService.AddCharacterSkill(newCharacterSkill));
         }
     }
 }
